@@ -1,145 +1,151 @@
-# Actividad en Python
+Taller de Transformaciones – Python, Three.js y Processing
 
-  ![Animación de un triángulo rotando, trasladándose y creciendo en tamaño](https://github.com/mafecala/compuvisual/blob/master/2025-04-15_taller1_transformaciones/python/animation.gif)
+Repositorio: psandoval123/computacion_visual_2025_2
 
-## Descripción
-Proyecto en **Jupyter Notebook** que aplica transformaciones geométricas a un triángulo:
-- **Traslación**
-- **Rotación**  
-- **Escala**
+🔷 Ejercicio en Python
 
-Usando multiplicación de matrices con `numpy` y visualización con `matplotlib`.
+Descripción
 
-##  Características
-- Usa matrices de transformación
-- Hace una animación y genera un GIF
-- Control de parámetros
+Este cuaderno en Jupyter Notebook demuestra transformaciones geométricas aplicadas a un triángulo:
 
-## Cómo ejecutar
+Desplazamiento (traslación)
 
-1.  Instalar requisitos:
+Giro (rotación)
 
-`pip install numpy matplotlib pillow`    
-    
-2.  Ejecuta el Jupyter Notebook:
+Cambio de tamaño (escala)
 
-` jupyter notebook transformaciones.ipynb`
+Se implementa mediante multiplicación de matrices con numpy y se ilustra con matplotlib.
 
-## Personalización
+Funcionalidades
 
-Se pueden modificar estos parámetros en el notebook:
+Uso de matrices de transformación.
 
-    tx, ty = 3, 2          # traslación
-    angulo = 60             # rotación en grados
-    escala_inicial = 0.5    # escala
-    escala_final = 1.5      
+Generación de una animación exportada como GIF.
 
-# Three.js con React Three Fiber
+Ajuste de parámetros de manera sencilla.
 
-  ![Animación de un cubo rotando, trasladándose y cambiando de tamaño](https://github.com/mafecala/compuvisual/blob/master/2025-04-15_taller1_transformaciones/threejs/threejs-demostracion.gif)
+Cómo ejecutarlo
 
-## Descripción
-Proyecto con **Vite** y **React Three Fiber**. Un cubo rota sobre su propio eje, sigue una trayectoria senoidal y escala con una función temporal. 
+Instala las dependencias:
 
-Adicionalmente, la escena puede navergarse con controles. (Desplazamiento, zoom y rotación)
+pip install numpy matplotlib pillow
 
-##  Características
-Este proyecto se inició con el **template básico de Vite + React**, que incluye:
-- Hot Module Replacement (HMR)
-- Configuración inicial de ESLint
-- Estructura estándar de Vite
-- Generado con:
-` npm create vite@latest proyecto --template react `
 
-**Los controles son los siguientes:**
+Abre el notebook:
 
-*Click izquierdo:* Rotar la cámara
-*Click derecho:* Trasladar la cámara
-*Rueda del mouse:* Zoom
+jupyter notebook transformaciones.ipynb
 
-## Cómo ejecutar
+Parámetros editables
 
-1.  Instalar requisitos:
+Dentro del archivo puedes modificar valores como:
 
-`npm install three @react-three/fiber @react-three/drei`    
+tx, ty = 3, 2          # movimiento horizontal y vertical
+angulo = 60             # ángulo de rotación (grados)
+escala_inicial = 0.5    # tamaño inicial
+escala_final = 1.5      # tamaño final
 
-2.  Iniciar el servidor de desarrollo:
+🟩 Proyecto con Three.js y React Three Fiber
 
-`  npm run dev ` 
+Descripción
 
-NOTA: Verifica que estés en la carpeta correcta (cubo 3d)
-    
-3.  Abrir en el navegador:
-  
- http://localhost:5173
+Aplicación creada con Vite y React Three Fiber. Un cubo:
 
-## Personalización
+Gira sobre su propio eje.
 
-En **Box.jsx**:
+Se desplaza siguiendo una curva senoidal.
 
-Se pueden modificar estos parámetros para cambiar el movimiento del cubo:
+Cambia de escala con respecto al tiempo.
 
-    useFrame((state)  =>  {
-    
-    const  time = state.clock.elapsedTime
-    
-    boxRef.current.rotation.y  +=  0.01  //rota sobre su propio eje
-    
-    boxRef.current.position.x = Math.sin(time) *  2  //se traslada en trayectoria senoidal
-    
-    const  scale = Math.sin(time) *  0.3  +  1  //cambia su escala en función .del tiempo
-    
-    boxRef.current.scale.set(scale, scale, scale)
-    
-    })    
-Se pueden modificar estos parámetros para cambiar la apariencia del cubo:
+Incluye controles interactivos para rotar, acercar o alejar la cámara.
 
-    return (
-    
-    <mesh  ref={boxRef}>
-    
-    <boxGeometry  args={[1, 1, 1]}  />
-    
-    <meshStandardMaterial  color="hotpink"/>
-    
-    </mesh>
-    
-    )
-    
-# Actividad en Processing
+Características
 
-  ![Animación de un cubo rotando, trasladándose y cambiando de tamaño](https://github.com/mafecala/compuvisual/blob/master/2025-04-15_taller1_transformaciones/processing/demo-cubo.gif?raw=true)
+Proyecto basado en el starter de Vite + React.
 
-## Descripción
+Hot Module Replacement (HMR) listo.
 
-Proyecto creado con  **Processing**. Un cubo 3D que:
+Configuración de ESLint y estructura organizada.
 
--   Rota sobre su propio eje
-    
--   Se traslada siguiendo una trayectoria senoidal
-    
--   Cambia de tamaño usando una función temporal basada en el tiempo
+Creación inicial con:
 
-## Cómo ejecutar
+npm create vite@latest nombre-proyecto --template react
 
-1.  Instalar Processing.
 
-2.  Abrir el .pde en Processing.
-    
-3.  Ejecutarlo.
+Controles de navegación:
 
-## Personalización
+Clic izquierdo: girar la vista.
 
-Estos valores se pueden cambiar:
+Clic derecho: mover la cámara.
 
-### Movimiento:
+Rueda del mouse: zoom.
 
-    translate([X] * sin(millis()/[A]), 0);  // [X]=amplitud, [A]=velocidad
-    rotateY(frameCount * [B]);  // [B]=velocidad rotación
-    scale(1 + sin(millis()/[C]) * [D]);  // [C]=velocidad pulsación, [D]=intensidad
+Ejecución
 
-### Apariencia:
+Instala las librerías necesarias:
 
-    box([TAMAÑO]);  // Tamaño del cubo
-    fill(R, G, B);  // Color RGB (añadir antes de box())
-    stroke(COLOR);  // Color de bordes
+npm install three @react-three/fiber @react-three/drei
+
+
+Levanta el servidor:
+
+npm run dev
+
+
+Abre el navegador en: http://localhost:5173
+
+(Verifica estar en la carpeta correcta del cubo).
+
+Personalización
+
+En Box.jsx puedes ajustar el comportamiento del cubo:
+
+useFrame((state) => {
+  const t = state.clock.elapsedTime;
+  boxRef.current.rotation.y += 0.01;      // rotación
+  boxRef.current.position.x = Math.sin(t) * 2;  // movimiento senoidal
+  const s = Math.sin(t) * 0.3 + 1;
+  boxRef.current.scale.set(s, s, s);      // variación de escala
+});
+
+
+Y su apariencia:
+
+<mesh ref={boxRef}>
+  <boxGeometry args={[1, 1, 1]} />
+  <meshStandardMaterial color="hotpink" />
+</mesh>
+
+🟥 Experimento en Processing
+
+Descripción
+
+Sketch desarrollado en Processing que anima un cubo 3D:
+
+Rotación continua.
+
+Desplazamiento en forma de onda.
+
+Escalado dinámico dependiente del tiempo.
+
+Pasos para ejecutar
+
+Instala Processing.
+
+Abre el archivo .pde.
+
+Presiona “Run”.
+
+Ajustes personalizables
+
+Movimiento:
+
+translate(AMP * sin(millis()/VEL), 0);
+rotateY(frameCount * ROT);
+scale(1 + sin(millis()/FREQ) * INTENS);
+
+
+Aspecto:
+
+box(TAM);
+fill(R, G, B);
+stroke(colorBorde);
