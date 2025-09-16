@@ -149,3 +149,4 @@ Aspecto:
 box(TAM);
 fill(R, G, B);
 stroke(colorBorde);
+
