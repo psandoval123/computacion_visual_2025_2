@@ -1,49 +1,111 @@
-# 🧪 Jerarquías y Transformaciones: El Árbol del Movimiento
+💾 Repositorio desarrollado en: Python, React Three Fiber, OpenCV, NumPy, Vite y MediaPipe
+📅 Autor: Pablo Felipe Sandoval Menjura
+🏫 Universidad Nacional de Colombia — Ingeniería de Sistemas y Computación
+1️⃣ 🧪 Jerarquías y Transformaciones: El Árbol del Movimiento
 
-## 🧩 Ejercicio Realizado
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+En este ejercicio implementé una escena 3D interactiva usando React Three Fiber y Vite, enfocándome en comprender cómo funcionan las transformaciones jerárquicas en un entorno tridimensional.
 
-**Breve explicación (qué hice y por qué):**  
-En este ejercicio implementé una escena 3D interactiva usando **React Three Fiber** y **Vite**, enfocándome en comprender cómo funcionan las **transformaciones jerárquicas** en un entorno tridimensional.  
+Construí una estructura con tres niveles (padre, hijo y nieto) para observar cómo las transformaciones —traslación, rotación y escala— se propagan en cascada a los objetos hijos. Incorporé controles con Leva para manipular el nodo padre y añadí ayudas visuales como ejes y grillas.
 
-Construí una estructura con tres niveles (padre, hijo y nieto) para observar cómo las transformaciones —traslación, rotación y escala— se propagan en cascada a los objetos hijos.  
-El objetivo fue visualizar de forma práctica cómo un cambio en el objeto padre afecta automáticamente a toda la jerarquía, lo que representa un principio clave en los sistemas de gráficos 3D.
+El objetivo fue visualizar cómo los cambios en el objeto padre afectan toda la jerarquía, principio esencial en los sistemas gráficos 3D.
 
-También incorporé **controles interactivos con Leva** para manipular el nodo padre en tiempo real (posición, rotación y escala), permitiendo experimentar directamente con las transformaciones y su efecto en los objetos anidados.  
+2️⃣ 👁️ Visión Artificial con OpenCV
 
-Finalmente, añadí **ayudas visuales** como ejes y grillas para facilitar la comprensión espacial y la relación entre los diferentes niveles de la jerarquía.
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+En este ejercicio exploré los fundamentos de la visión artificial utilizando la biblioteca OpenCV en Python. Apliqué filtros convolucionales (desenfoque, enfoque y detección de bordes) mediante operadores Sobel, Laplaciano y Canny.
 
-# 👁️ Visión Artificial con OpenCV
+El objetivo fue comprender cómo los computadores procesan imágenes digitales a través de operaciones matemáticas sobre píxeles, observando las diferencias en cada método y su utilidad en segmentación y reconocimiento de objetos.
 
-## 🧩 Ejercicio Realizado
+3️⃣ 🎨 Rasterización desde Cero (Línea, Círculo, Triángulo)
 
-**Breve explicación (qué hice y por qué):**  
-En este ejercicio exploré los fundamentos de la **visión artificial** utilizando la biblioteca **OpenCV en Python**. El objetivo fue entender cómo los computadores pueden procesar imágenes digitales mediante operaciones matemáticas básicas aplicadas sobre los píxeles.
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Implementé desde cero los algoritmos clásicos de rasterización para generar primitivas gráficas básicas —líneas, círculos y triángulos— sin usar librerías de alto nivel.
 
-Apliqué **filtros convolucionales** (como desenfoque, enfoque y detección de bordes) para observar cómo modifican las características visuales de una imagen. Utilicé operadores como **Sobel**, **Laplaciano** y **Canny** para comparar sus resultados y comprender cómo cada uno detecta los contornos desde distintos enfoques.
+Desarrollé el algoritmo de Bresenham para líneas, el de punto medio para círculos y el método scanline para triángulos, apoyándome solo en Pillow, NumPy y Matplotlib.
+El objetivo fue comprender cómo los gráficos vectoriales se transforman en píxeles y cómo la precisión y eficiencia afectan el resultado visual.
 
-El ejercicio me permitió visualizar de manera práctica la relación entre las **operaciones matemáticas y los efectos visuales**, entendiendo cómo estas transformaciones sirven como base para tareas más avanzadas como la segmentación y el reconocimiento de objetos. Elegí este ejercicio porque proporciona una base sólida para comprender el procesamiento de imágenes antes de pasar a técnicas más complejas basadas en redes neuronales.
+4️⃣ 📐 Análisis Geométrico (Centroide, Área, Perímetro)
 
-# 🎨 Rasterización desde Cero (Línea, Círculo, Triángulo)
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Apliqué técnicas de análisis geométrico sobre imágenes binarizadas con OpenCV para extraer métricas descriptivas como área, perímetro y centroide.
 
-## 🧩 Ejercicio Realizado  
+Utilicé funciones como findContours, contourArea, arcLength y los momentos geométricos. Luego etiqueté cada objeto con sus métricas y generé un GIF animado con los resultados.
+Este ejercicio permitió entender cómo los contornos pueden convertirse en datos cuantitativos útiles para reconocimiento de formas.
 
-**Breve explicación (qué hice y por qué):**  
-En este ejercicio implementé desde cero los **algoritmos clásicos de rasterización** para generar primitivas gráficas básicas —líneas, círculos y triángulos— sin utilizar librerías de alto nivel.  
+5️⃣ 💠 Importando el Mundo (OBJ/STL/GLTF)
 
-Desarrollé el **algoritmo de Bresenham** para trazar líneas píxel a píxel con máxima eficiencia entera, el **algoritmo del punto medio** para dibujar círculos aprovechando su simetría, y el método **scanline** para el **relleno de triángulos**. Estas implementaciones las realicé en **Python**, apoyándome únicamente en **Pillow, NumPy y Matplotlib** para la visualización final.  
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Trabajé con distintos formatos de modelos 3D —OBJ, STL y GLTF— usando Trimesh en Python. Analicé diferencias en el almacenamiento de vértices, caras, normales y materiales, además de realizar conversiones entre formatos.
 
-El objetivo principal fue comprender cómo los gráficos vectoriales se transforman en píxeles (rasterización) y cómo la precisión y eficiencia de cada algoritmo afectan el resultado visual.  
-Elegí este ejercicio porque permite **entender los fundamentos matemáticos detrás del renderizado digital**, sentando las bases para procesos más avanzados como el shading o la proyección en 3D.
+El objetivo fue comprender la interoperabilidad entre entornos 3D y la pérdida de información que puede producirse al convertir.
+Elegí este ejercicio porque muestra la importancia de los estándares 3D para diseño, simulación y desarrollo interactivo.
 
----
+6️⃣ 🌐 Escenas Paramétricas (Objetos desde Datos)
 
-# 📐 Análisis Geométrico (Centroide, Área, Perímetro)
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Generé una escena 3D a partir de datos estructurados (CSV) usando Open3D en Python. Cada fila representaba un objeto con coordenadas y propiedades como color y escala.
 
-## 🧩 Ejercicio Realizado  
+Programé la creación de primitivas de manera automática a partir de los datos, lo que me permitió comprender cómo los modelos paramétricos conectan la geometría con la información.
+Este enfoque demuestra cómo se pueden crear visualizaciones tridimensionales desde datasets.
 
-**Breve explicación (qué hice y por qué):**  
-En este ejercicio apliqué técnicas de **análisis geométrico** sobre imágenes binarizadas utilizando **OpenCV**. Mi objetivo fue extraer métricas descriptivas de los contornos —como **área**, **perímetro** y **centroide**— para comprender cómo los algoritmos de visión artificial cuantifican la forma de los objetos.  
+7️⃣ 🔲 Filtro Visual (Convoluciones Personalizadas)
 
-Utilicé funciones como `findContours`, `contourArea`, `arcLength` y los **momentos geométricos** para calcular los centroides. Luego, **etiqueté visualmente** cada objeto con sus métricas sobre la imagen y generé un **GIF animado** mostrando los resultados. Como extensión, añadí una **clasificación automática básica** (triángulo, cuadrado o círculo) mediante aproximación de contornos.  
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Implementé convoluciones 2D manuales con NumPy, aplicando kernels personalizados para desenfoque, realce de bordes y detección de esquinas.
 
-Elegí este ejercicio porque demuestra cómo a partir de simples contornos se pueden **obtener propiedades cuantitativas y cualitativas de las figuras**, un paso esencial en la **extracción de características** y en sistemas de reconocimiento de formas.
+Comparé los resultados con cv2.filter2D y analicé las diferencias en eficiencia y precisión.
+Este ejercicio me permitió entender la base matemática detrás del procesamiento de imágenes y de las redes convolucionales modernas.
+
+8️⃣ 🌈 Explorando el Color (RGB, HSV, CIE Lab)
+
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Convertí imágenes entre los modelos RGB, HSV y CIE Lab usando OpenCV para observar cómo cada uno representa el color.
+
+Además, simulé daltonismo (protanopía y deuteranopía) mediante matrices y experimenté con filtros de brillo, contraste y temperatura.
+El objetivo fue comprender los efectos perceptuales y técnicos de cada modelo y cómo se aplican en visión computacional.
+
+9️⃣ 🎥 Proyecciones 3D (Perspectiva vs Ortográfica)
+
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Construí una escena en React Three Fiber con dos cámaras: una perspectiva y otra ortográfica. Implementé controles con Leva para modificar el FOV y el tamaño ortográfico en tiempo real.
+
+Esto me permitió visualizar cómo las proyecciones afectan la sensación de profundidad y composición espacial.
+El ejercicio fue clave para comprender el papel de las cámaras en entornos tridimensionales.
+
+🔟 ✋ Gestos con Webcam (MediaPipe Hands)
+
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Desarrollé un sistema de detección de manos con MediaPipe y OpenCV. Implementé el conteo de dedos y el reconocimiento de gestos para controlar elementos visuales (cambio de color, movimiento, etc.).
+
+El objetivo fue explorar interfaces naturales de interacción basadas en visión por computador.
+Elegí este ejercicio porque combina IA ligera con control gestual, útil para aplicaciones educativas o accesibles.
+
+1️⃣1️⃣ 🧩 Imagen = Matriz (Canales, Slicing, Histogramas)
+
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Manipulé imágenes como matrices de datos numéricos usando OpenCV y NumPy. Separé canales RGB, realicé operaciones de recorte (slicing), edité brillo y contraste y generé histogramas de intensidad.
+
+El ejercicio me permitió comprender cómo los valores de los píxeles determinan las características visuales y cómo modificarlos de manera controlada.
+Este enfoque es fundamental para entender el procesamiento digital de imágenes.
+
+1️⃣2️⃣ 🚀 Segmentando el Mundo (Binarización y Contornos)
+
+🧩 Ejercicio Realizado
+Breve explicación (qué hice y por qué):
+Implementé distintos métodos de binarización —fija y adaptativa— con OpenCV, seguidos de detección y dibujo de contornos usando findContours.
+
+Calculé áreas, perímetros y centroides, además de clasificar figuras según sus vértices con approxPolyDP.
+Este ejercicio me ayudó a entender cómo segmentar objetos dentro de una imagen y extraer información estructural útil para reconocimiento de formas.
+
