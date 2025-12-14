@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen Final Three.js</title>
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            font-family: Arial, sans-serif;
+        }
+        #btnCamara {
+            position: absolute;
+            z-index: 10;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #btnCamara:hover {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        #info {
+            position: absolute;
+            z-index: 10;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+            max-width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnCamara">Cambiar Cámara</button>
+    
+    <div id="info">
+        <strong>Instrucciones:</strong><br>
+        • Click y arrastra para rotar<br>
+        • Rueda del mouse para zoom<br>
+        • Botón derecho para mover<br>
+        • Usa el botón para cambiar cámara
+    </div>
+
+    <script type="module">
+        // ===========================================================
+        // IMPORTS - SOLO CDN, no imports locales
+        // ===========================================================
+        import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
+        import { OrbitControls } from "https://unpkg.com/three@0.164.0/examples/jsm/controls/OrbitControls.js";
+
+        console.log("Three.js cargado desde CDN");
+
+        // ===========================================================
+        // 1. Escena, render y cámaras
+        // ===========================================================
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x333333);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        // Cámara 1: Perspectiva frontal
+        const camera1 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera1.position.set(5, 5, 10);
+        camera1.lookAt(0, 0, 0);
+
+        // Cámara 2: Vista superior
+        const camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera2.position.set(0, 15, 0);
+        camera2.lookAt(0, 0, 0);
+
+        let activeCamera = camera1;
+
+        // Controles de órbita
+        const controls = new OrbitControls(activeCamera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        // ===========================================================
+        // 2. Texturas (con manejo de errores)
+        // ===========================================================
+        const loader = new THREE.TextureLoader();
+        
+        // Textura de madera con fallback a color sólido si no existe
+        let texturaMadera, texturaMaderaBlanca;
+        
+        try {
+            texturaMadera = loader.load("./textures/madera.jpg", 
+                () => console.log("Textura madera cargada"),
+                undefined, 
+                (err) => {
+                    console.warn("No se pudo cargar madera.jpg, usando color sólido");
+                    texturaMadera = null;
+                }
+            );
+            
+            texturaMaderaBlanca = loader.load("./textures/madera-blanca.jpg",
+                () => console.log("Textura madera blanca cargada"),
+                undefined,
+                (err) => {
+                    console.warn("No se pudo cargar madera-blanca.jpg, usando color sólido");
+                    texturaMaderaBlanca = null;
+                }
+            );
+        } catch (e) {
+            console.warn("Error cargando texturas:", e);
+        }
+
+        // ===========================================================
+        // 3. Objetos
+        // ===========================================================
+        // Piso
+        const pisoMat = texturaMadera 
+            ? new THREE.MeshStandardMaterial({ map: texturaMadera })
+            : new THREE.MeshStandardMaterial({ color: 0x8B4513 });
+        
+        const pisoGeo = new THREE.PlaneGeometry(20, 20);
+        const piso = new THREE.Mesh(pisoGeo, pisoMat);
+        piso.rotation.x = -Math.PI / 2;
+        piso.receiveShadow = true;
+        scene.add(piso);
+
+        // Cubo (con textura o color)
+        const cuboMat = texturaMaderaBlanca
+            ? new THREE.MeshStandardMaterial({ map: texturaMaderaBlanca })
+            : new THREE.MeshStandardMaterial({ color: 0xF5F5F5 });
+        
+        const cuboGeo = new THREE.BoxGeometry(2, 2, 2);
+        const cubo = new THREE.Mesh(cuboGeo, cuboMat);
+        cubo.position.set(-3, 1, 0);
+        cubo.castShadow = true;
+        scene.add(cubo);
+
+        // Esfera
+        const esferaGeo = new THREE.SphereGeometry(1, 32, 32);
+        const esferaMat = new THREE.MeshStandardMaterial({ color: 0x88ccff });
+        const esfera = new THREE.Mesh(esferaGeo, esferaMat);
+        esfera.position.set(3, 1, 0);
+        esfera.castShadow = true;
+        scene.add(esfera);
+
+        // Cono
+        const conoGeo = new THREE.ConeGeometry(1, 2, 32);
+        const conoMat = new THREE.MeshStandardMaterial({ color: 0xffbb00 });
+        const cono = new THREE.Mesh(conoGeo, conoMat);
+        cono.position.set(0, 1, 3);
+        cono.castShadow = true;
+        scene.add(cono);
+
+        // ===========================================================
+        // 4. Luces
+        // ===========================================================
+        const luzAmbiente = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(luzAmbiente);
+
+        const luzDireccional = new THREE.DirectionalLight(0xffffff, 1);
+        luzDireccional.position.set(5, 10, 5);
+        luzDireccional.castShadow = true;
+        luzDireccional.shadow.mapSize.width = 2048;
+        luzDireccional.shadow.mapSize.height = 2048;
+        scene.add(luzDireccional);
+
+        // ===========================================================
+        // 5. Cambiar cámara
+        // ===========================================================
+        document.getElementById("btnCamara").onclick = () => {
+            if (activeCamera === camera1) {
+                activeCamera = camera2;
+                document.getElementById("btnCamara").textContent = "Cámara: Vista Superior";
+            } else {
+                activeCamera = camera1;
+                document.getElementById("btnCamara").textContent = "Cámara: Vista Frontal";
+            }
+            controls.object = activeCamera;
+            controls.update();
+        };
+
+        // Redimensionar ventana
+        window.addEventListener('resize', () => {
+            activeCamera.aspect = window.innerWidth / window.innerHeight;
+            activeCamera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // ===========================================================
+        // 6. Animación
+        // ===========================================================
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotaciones
+            cubo.rotation.y += 0.01;
+            esfera.rotation.x += 0.02;
+            cono.rotation.z += 0.02;
+
+            controls.update();
+            renderer.render(scene, activeCamera);
+        }
+
+        animate();
+        
+        console.log("Escena Three.js inicializada correctamente");
+    </script>
+</body>
+</html>
